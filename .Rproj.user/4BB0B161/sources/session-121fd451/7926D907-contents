@@ -19,7 +19,7 @@ Wickham and Garrett Grolemund. Thank you amazing R community!
 In the Console window below, type: 2+2 and press Enter Also try:
 
 ```{r}
-<- 2^5
+2^5
 3/10
 (3+5)^2
 sqrt(4)
@@ -137,23 +137,20 @@ file:
 
 ```{r}
 library(here)
-fev_data <- read_csv(here("fev.csv"))
+fev_Inputs <- read_csv(here("Inputs/fev.csv"))
 ```
 
 (Remember to install the "here" package the first time.)
 
 --\> How would you use read_csv with the pipe operator?
 
-```{r}
-library(here)
-fev_Inputs %>% 
-  read_csv(here("Inputs/fev.csv"))
+```{}
 ```
 
 Look at the top few rows of the data:
 
 ```{r}
-head(fev_data)
+head(fev_Inputs)
 ```
 
 fev_data is a tibble - this is a tidyverse structure similar to a data
@@ -178,7 +175,7 @@ sheet!) There is a text file in your dataset so you can practice:
 psa.txt
 
 ```{r}
-# Add your code here!
+psa_Inputs <- read_delim(here("Inputs/psa.txt"))
 ```
 
 --\> Have a look at the "Useful arguments" section of the data import
@@ -186,13 +183,42 @@ cheat sheet. Use a few of them when you read in fev.csv and look at the
 data, is that what you expected?
 
 ```{r}
-# Add your code here!
+#no header
+read_csv (here("Inputs/fev.csv"), col_names = FALSE)
+```
+
+```{r}
+# provide header
+read_csv (here("Inputs/fev.csv"), col_names=c("x", "y", "z"))
+```
+
+```{r}
+# skip lines
+read_csv (here("Inputs/fev.csv"), skip=1)
+```
+
+```{r}
+# read a subset of lines
+read_csv (here("Inputs/fev.csv"), n_max = 1)
+```
+
+```{r}
+# read values as missing
+read_csv (here("Inputs/fev.csv"), na = c("1"))
 ```
 
 --\> Apply the summary function to a tibble. What does it do?
 
 ```{r}
-# Add your code here!
+summarise(fev_Inputs, age, height)
+```
+
+```{r}
+summarise(fev_Inputs)
+```
+
+```{r}
+summarise(fev_Inputs, fev)
 ```
 
 ### Operating on data: columns
@@ -200,22 +226,22 @@ data, is that what you expected?
 Individual columns are identified using the \$ symbol:
 
 ```{r}
-head(fev_data$fev)
-summary(fev_data$fev)
-length(fev_data$fev)
+head(fev_Inputs$fev)
+summary(fev_Inputs$fev)
+length(fev_Inputs$fev)
 ```
 
 Other useful functions for tibbles and data frames:
 
 ```{r}
-names(fev_data)
-dim(fev_data)
+names(fev_Inputs)
+dim(fev_Inputs)
 ```
 
 Other useful functions for columns:
 
 ```{r}
-max(fev_data$fev)
-mean(fev_data$fev)
-sd(fev_data$fev)
+max(fev_Inputs$fev)
+mean(fev_Inputs$fev)
+sd(fev_Inputs$fev)
 ```
