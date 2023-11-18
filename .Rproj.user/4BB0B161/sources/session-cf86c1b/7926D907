@@ -3,7 +3,7 @@
     "path": "C:/Users/irina/Desktop/current work search/UoA Data Science 2023/GitHub/Population_Prescribed_Drug/Methods/R_read-data.Rmd",
     "project_path": "Methods/R_read-data.Rmd",
     "type": "r_markdown",
-    "hash": "4187037486",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1697909506528.0,
@@ -12,21 +12,21 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "last_setup_crc32": "121fd451bb338d19",
-        "rmdVisualMode": "true",
+        "last_setup_crc32": "",
+        "rmdVisualMode": "false",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "4022:2584",
+        "rmdVisualModeLocation": "2:0",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
-        "cursorPosition": "146,0",
-        "scrollLine": "13"
+        "cursorPosition": "137,0",
+        "scrollLine": "116"
     },
     "folds": "",
     "lastKnownWriteTime": 1698699837,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1698699837054,
+    "last_content_update": 1700309261493,
     "read_only": false,
     "read_only_alternatives": []
 }

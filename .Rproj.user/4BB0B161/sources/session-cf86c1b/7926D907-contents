@@ -144,7 +144,7 @@ fev_Inputs <- read_csv(here("Inputs/fev.csv"))
 
 --\> How would you use read_csv with the pipe operator?
 
-```{}
+```         
 ```
 
 Look at the top few rows of the data:

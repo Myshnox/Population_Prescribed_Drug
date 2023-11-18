@@ -1,0 +1,25 @@
+# Data report on Population Prescribed Drug
+
+This document was written by Irina Laidvee for data project (PU5058)
+
+The data for the project was used form "Scottish Public Health Observatory" website via the ScotPHO Online Profiles tool access. The Rank tab was used to compare geographical variation for an indicator. First "Population prescribed drug for anxiety/depression/psychosis" was chosen for an indicator, then all Health Boards within Scotland were selected for geography level and compared by time. Areas were compared to each other over time since 2010/11 as a baseline year to 2021/22.
+
+### First, we load all packages and load the raw data.
+
+```{r}
+library(readr)
+library(tidyr)
+library(dplyr)
+library(here)
+library(tidyverse)
+```
+
+Then we open downloaded rank_data file in csv from the website.
+
+```{r}
+rank_data_Inputs <- read_csv(here("Inputs/rank_data.csv"))
+```
+
+This shows that we have 14 rows for each Health Board and 14 columns with variables and observations. A tidy dataset has to contain only 1 observation per row.
+
+### Cleaning the dataset.
