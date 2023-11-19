@@ -1,0 +1,7 @@
+"0","ID_rank_data <- presc_data[, c(""health_board"", ""area_code"")]"
+"0","write_csv(ID_rank_data, ""ID_rank_data.csv"")"
+"0",""
+"0","#remove area_code column"
+"0","plot_data <- presc_data [, -c(2)]"
+"0","write_csv(plot_data, ""plot_data.csv"")"
+"0","view(plot_data)"

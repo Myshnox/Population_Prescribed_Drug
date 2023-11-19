@@ -1,0 +1,4 @@
+"0","plot_data2 <- plot_data  %>% "
+"0","  mutate(total_change = final_year_2021 - first_year_2010) %>% "
+"0","  arrange(total_change)"
+"0","write_csv(plot_data2, ""plot_data2.csv"")"
