@@ -3,9 +3,9 @@
     "path": "C:/Users/irina/Desktop/current work search/UoA Data Science 2023/GitHub/Population_Prescribed_Drug/Methods/Data project.rmd",
     "project_path": "Methods/Data project.rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "2125980415",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1700309073598.0,
     "source_on_save": false,
     "relative_order": 1,
@@ -22,11 +22,11 @@
         "rmdVisualModeLocation": "3810:1300"
     },
     "folds": "",
-    "lastKnownWriteTime": 1700522298,
+    "lastKnownWriteTime": 1700522496,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1700522442982,
+    "last_content_update": 1700522496213,
     "read_only": false,
     "read_only_alternatives": []
 }

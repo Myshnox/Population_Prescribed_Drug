@@ -102,8 +102,8 @@ Tidy the dataset for year comparison.
 ```{r}
 Scot_pop <- plot_data %>% 
   rename("2021" = final_year_2021) %>% 
-  rename("2010" = first_year_2010)
-pivot_longer(Scot_pop, 3:4, names_to = "years", values_to = "%") 
+  rename("2010" = first_year_2010)  
+pivot_longer(Scot_pop, 3:4, names_to = "years", values_to = "%") %>% 
   write_csv(Scot_pop, "Scot_pop.csv")
 ```
 
