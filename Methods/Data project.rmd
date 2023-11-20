@@ -10,11 +10,9 @@ The data for the project was used form "Scottish Public Health Observatory" webs
 library(here)
 library(tidyverse)
 library(viridisLite)
-```
 
-Then we open downloaded rank_data file in csv from the website.
+#read the data
 
-```{r}
 rank_data <- read_csv(here("Inputs/rank_data.csv"))
 ```
 
@@ -69,7 +67,7 @@ xlab("Percentage") +
   ylab("")
 ```
 
-2.  *Make some data analysis for further data visualization.* Let's add another column and calculate what is the total change in population % of prescribed medication during 2010 - 2021. We will also arrange the data in ascending order.
+2.  *Make some simple data analysis for further data visualization.* Let's add another column and calculate what is the total change in population % of prescribed medication during 2010 - 2021. We will organise the data in order, use bubble plot with colour changing scale in % difference.
 
 ```{r}
 plot_data2 <- plot_data  %>% 
@@ -92,6 +90,28 @@ plot_data2 %>%
   ylab("") +
   theme(legend.position = "none") +
   ggtitle("Population % increase in drug prescription over 10 years")
-
-  
 ```
+
+3.  *Some statistical analysis and data visualization.* Run a basic analysis with summary function.
+
+```{r}
+summary(plot_data2)
+```
+Tidy the dataset for year comparison.
+
+```{r}
+Scot_pop <- plot_data %>% 
+  rename("2021" = final_year_2021) %>% 
+  rename("2010" = first_year_2010)
+pivot_longer(Scot_pop, 3:4, names_to = "years", values_to = "%") 
+  write_csv(Scot_pop, "Scot_pop.csv")
+```
+
+```{r}
+
+
+```
+
+
+
+

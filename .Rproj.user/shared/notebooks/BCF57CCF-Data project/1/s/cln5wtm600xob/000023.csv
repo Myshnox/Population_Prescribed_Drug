@@ -1,0 +1,4 @@
+"0","Scot_pop <- plot_data %>% "
+"0","  rename(""2021"" = final_year_2021) %>% "
+"0","  rename(""2010"" = first_year_2010)"
+"0","pivot_longer(Scot_pop, 3:4, names_to = ""years"", values_to = ""%"") "
