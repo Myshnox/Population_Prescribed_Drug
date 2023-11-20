@@ -7,11 +7,9 @@ The data for the project was used form "Scottish Public Health Observatory" webs
 ### First, we load all packages and load the raw data.
 
 ```{r}
-library(readr)
-library(tidyr)
-library(dplyr)
 library(here)
 library(tidyverse)
+library(viridisLite)
 ```
 
 Then we open downloaded rank_data file in csv from the website.
@@ -50,7 +48,6 @@ write_csv(ID_rank_data, "ID_rank_data.csv")
 #remove area_code column
 plot_data <- presc_data [, -c(2)]
 write_csv(plot_data, "plot_data.csv")
-view(plot_data)
 ```
 
 ### Creating a data visualization
@@ -83,8 +80,18 @@ write_csv(plot_data2, "plot_data2.csv")
 
 Make a plot.
 
-```{r}
+```{r, fig.width=8, fig.height=6}
 plot_data2 %>% 
-  ggplot(aes(x=total_change, y=health_board)) +
-  geom_col()
+  arrange(desc(total_change)) %>% 
+  mutate(health_board = factor(health_board, health_board)) %>% 
+  ggplot(aes(x=total_change, y=health_board, size = total_change, fill= total_change)) + 
+  geom_point(alpha=0.3, color ="black", shape = 21) + 
+  scale_size(range = c(.1,17), name = "Percentage (%)") +
+  scale_fill_viridis_c(alpha = 0.5, begin = 0, end = 1, direction = -1, option = "H", values = NULL, space = "Lab", guide = "colourbar", aesthetics = "fill") +
+  xlab("") +
+  ylab("") +
+  theme(legend.position = "none") +
+  ggtitle("Population % increase in drug prescription over 10 years")
+
+  
 ```

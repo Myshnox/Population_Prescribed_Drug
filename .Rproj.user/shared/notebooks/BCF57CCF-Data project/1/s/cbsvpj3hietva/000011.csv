@@ -1,3 +1,0 @@
-"0","plot_data2 %>% "
-"0","  ggplot(aes(x=total_change, y=health_board)) +"
-"0","  geom_col()"
