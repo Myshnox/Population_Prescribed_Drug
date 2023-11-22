@@ -1,5 +1,6 @@
 ---
----
+title: Data report project
+output: pdf_document
 ---
 
 # Data report on Population Prescribed Drug
@@ -32,17 +33,18 @@ rank_data_NEW = rank_data[, -c(1, 4, 5, 6, 9, 10, 12, 13, 14)]
 glimpse(rank_data_NEW)
 ```
 
-2.  *Change columns' names.* Here we will change the names of some columns. measure -\> final_year_2021, comparator_value -\> first_year_2010. Also we will omit the NHS from area_name column.
+2.  *Change columns' names.* Here we will change the names of some columns. measure -\> finish_2021, comparator_value -\> start_2010. Also we will omit the NHS from area_name column.
 
 ```{r}
-colnames(rank_data_NEW)[colnames(rank_data_NEW) %in% c("measure", "comparator_value")] <- c("finish_2021", "start_2010")
+colnames(rank_data_NEW)[colnames(rank_data_NEW) %in% c("measure", 
+          "comparator_value")] <- c("finish_2021", "start_2010")
 presc_data <- rank_data_NEW %>% 
   mutate(area_name = gsub ("NHS", "", area_name)) %>% 
   rename(health_board = area_name)
 
 ```
 
-3.  *Separate data sets.* We have area_name and area_code as an identification for each row. In a clean data set this should be separate. Therefore, we have created a separate csv file containing geographical identification, moved this file to outputs, as this is a complete file and will not be used for data analysis. We remove area_code column from the table and save new table in outputs folder.
+3.  *Separate data sets.* We have area_name and area_code as an identification for each row. In a clean data set this should be separate. Therefore, we have created a separate csv file containing geographical identification. We remove area_code column from the table and save new table.
 
 ```{r}
 ID_rank_data <- presc_data[, c("health_board", "area_code")]
@@ -62,7 +64,8 @@ ggplot(plot_data, aes(x=start_2010, y= health_board)) +
   #include point appearance
   geom_point(size = 3, color = "red", shape = 21, fill = "orange", stroke = 1) +
   #include segment appearance
-  geom_segment(aes(x=start_2010, xend=finish_2021, y=health_board, yend=health_board) , size = 0.5, color = "black", linetype = "dotdash") +
+  geom_segment(aes(x=start_2010, xend=finish_2021, y=health_board, yend=health_board) , 
+               size = 0.5, color = "black", linetype = "dotdash") +
   #include plot theme
   theme_light() + 
   theme(panel.border = element_blank() , panel.grid.minor.x = element_line() ) +
@@ -90,7 +93,9 @@ plot_data2 %>%
   ggplot(aes(x=total_change, y=health_board, size = total_change, fill= total_change)) + 
   geom_point(alpha=0.3, color ="black", shape = 21) + 
   scale_size(range = c(.1,17), name = "Percentage (%)") +
-  scale_fill_viridis_c(alpha = 0.5, begin = 0, end = 1, direction = -1, option = "H", values = NULL, space = "Lab", guide = "colourbar", aesthetics = "fill") +
+  scale_fill_viridis_c(alpha = 0.5, begin = 0, end = 1, direction = -1, option = "H", 
+                       values = NULL, space = "Lab", guide = "colourbar", 
+                       aesthetics = "fill") +
   xlab("") +
   ylab("") +
   theme(legend.position = "none") +
@@ -118,7 +123,8 @@ pivot_longer(3:4, names_to = "years", values_to = "per_cent") %>%
 
 ```{r}
 t.test(data = stat_test, per_cent ~ years, paired = FALSE)
-#The negative t-value is due to the order of the groups. If the groups are switched, the answer will be the same, but with a positive sign.
+#The negative t-value is due to the order of the groups. 
+#If the groups are switched, the answer will be the same, but with a positive sign.
 ```
 
 #boxplot
