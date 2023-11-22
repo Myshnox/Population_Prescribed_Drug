@@ -1,3 +1,7 @@
+---
+---
+---
+
 # Data report on Population Prescribed Drug
 
 This document was written by Irina Laidvee for data project (PU5058)
@@ -10,6 +14,7 @@ The data for the project was used form "Scottish Public Health Observatory" webs
 library(here)
 library(tidyverse)
 library(viridisLite)
+library(latexpdf)
 
 #read the data
 
@@ -113,7 +118,7 @@ pivot_longer(3:4, names_to = "years", values_to = "per_cent") %>%
 
 ```{r}
 t.test(data = stat_test, per_cent ~ years, paired = FALSE)
-#the negative t-value is due to the order of the groups, if the groups are switch the answer will be the same, but with a positive sign
+#The negative t-value is due to the order of the groups. If the groups are switched, the answer will be the same, but with a positive sign.
 ```
 
 #boxplot

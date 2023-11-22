@@ -1,0 +1,4 @@
+"0","colnames(plot_data)[colnames(plot_data) %in% c(""finish_2021"", ""start_2010"")] <- c(""2021"", ""2010"")"
+"0","stat_test <- plot_data %>% "
+"0","pivot_longer(3:4, names_to = ""years"", values_to = ""per_cent"") %>% "
+"0","  select(""years"", ""per_cent"" )"

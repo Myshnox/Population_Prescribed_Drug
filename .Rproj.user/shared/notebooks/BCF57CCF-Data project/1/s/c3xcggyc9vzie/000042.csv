@@ -10,3 +10,5 @@
 "0","          ggtitle(""Anxiety & Depression prescriptions for 2010 - 2021"") +"
 "0","xlab(""Percentage"") + "
 "0","  ylab("""")"
+"2","Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+Please use `linewidth` instead."
