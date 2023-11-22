@@ -30,7 +30,7 @@ glimpse(rank_data_NEW)
 2.  *Change columns' names.* Here we will change the names of some columns. measure -\> final_year_2021, comparator_value -\> first_year_2010. Also we will omit the NHS from area_name column.
 
 ```{r}
-colnames(rank_data_NEW)[colnames(rank_data_NEW) %in% c("measure", "comparator_value")] <- c("final_year_2021", "first_year_2010")
+colnames(rank_data_NEW)[colnames(rank_data_NEW) %in% c("measure", "comparator_value")] <- c("finish_2021", "start_2010")
 presc_data <- rank_data_NEW %>% 
   mutate(area_name = gsub ("NHS", "", area_name)) %>% 
   rename(health_board = area_name)
@@ -53,11 +53,11 @@ write_csv(plot_data, "plot_data.csv")
 1.  *Lollipop graph* We will be using library "forcats" and "ggplot2" from "tidyverse" and "viridisLite". We would like to create a lollipop plot, which is very close from both scatterplots and barplots.
 
 ```{r}
-ggplot(plot_data, aes(x=first_year_2010, y=health_board)) +
+ggplot(plot_data, aes(x=start_2010, y= health_board)) +
   #include point appearance
   geom_point(size = 3, color = "red", shape = 21, fill = "orange", stroke = 1) +
   #include segment appearance
-  geom_segment(aes(x=first_year_2010, xend=final_year_2021, y=health_board, yend=health_board) , size = 0.5, color = "black", linetype = "dotdash") +
+  geom_segment(aes(x=start_2010, xend=finish_2021, y=health_board, yend=health_board) , size = 0.5, color = "black", linetype = "dotdash") +
   #include plot theme
   theme_light() + 
   theme(panel.border = element_blank() , panel.grid.minor.x = element_line() ) +
@@ -71,7 +71,7 @@ xlab("Percentage") +
 
 ```{r}
 plot_data2 <- plot_data  %>% 
-  mutate(total_change = final_year_2021 - first_year_2010) %>% 
+  mutate(total_change = finish_2021 - start_2010) %>% 
   arrange(total_change)
 write_csv(plot_data2, "plot_data2.csv")
 ```
@@ -97,21 +97,39 @@ plot_data2 %>%
 ```{r}
 summary(plot_data2)
 ```
+
 Tidy the dataset for year comparison.
 
-```{r}
-Scot_pop <- plot_data %>% 
-  rename("2021" = final_year_2021) %>% 
-  rename("2010" = first_year_2010)  
-pivot_longer(Scot_pop, 3:4, names_to = "years", values_to = "%") %>% 
-  write_csv(Scot_pop, "Scot_pop.csv")
-```
+#column name change, pivot the table
 
 ```{r}
-
-
+colnames(plot_data)[colnames(plot_data) %in% c("finish_2021", "start_2010")] <- c("2021", "2010")
+stat_test <- plot_data %>% 
+pivot_longer(3:4, names_to = "years", values_to = "per_cent") %>% 
+  select("years", "per_cent" )
 ```
 
+#non-parametric test, shows there is a significant difference between the years
 
+```{r}
+t.test(data = stat_test, per_cent ~ years, paired = FALSE)
+#the negative t-value is due to the order of the groups, if the groups are switch the answer will be the same, but with a positive sign
+```
 
+#boxplot
 
+```{r}
+box_plot <- plot_data %>% 
+pivot_longer(3:4, names_to = "years", values_to = "per_cent")
+
+ggplot(box_plot, aes(x = as.factor(years), y = per_cent, fill = as.factor(years))) +
+  geom_boxplot(alpha=0.6, show.legend = FALSE, outlier.color = "red", outlier.shape = 19) +
+  stat_boxplot(geom = "errorbar", width = 0.2) +
+  geom_jitter(color = "black", size = 2, alpha = 0.8) +
+ ylab("Percentage") +
+  xlab("") +
+  theme_bw() +
+  theme(legend.position = "none", plot.title = element_text(size=18)) +
+  ggtitle("Health Boards values overlay for 2010 and 2021")
+ 
+```

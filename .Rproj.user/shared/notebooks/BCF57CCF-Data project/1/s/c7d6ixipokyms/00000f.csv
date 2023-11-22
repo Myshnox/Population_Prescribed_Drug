@@ -1,4 +1,4 @@
-"0","colnames(rank_data_NEW)[colnames(rank_data_NEW) %in% c(""measure"", ""comparator_value"")] <- c(""final_year_2021"", ""first_year_2010"")"
+"0","colnames(rank_data_NEW)[colnames(rank_data_NEW) %in% c(""measure"", ""comparator_value"")] <- c(""finish_2021"", ""start_2010"")"
 "0","presc_data <- rank_data_NEW %>% "
 "0","  mutate(area_name = gsub (""NHS"", """", area_name)) %>% "
 "0","  rename(health_board = area_name)"

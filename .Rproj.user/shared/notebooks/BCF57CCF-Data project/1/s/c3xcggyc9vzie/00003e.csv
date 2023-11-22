@@ -1,8 +1,8 @@
-"0","ggplot(plot_data, aes(x=first_year_2010, y=health_board)) +"
+"0","ggplot(plot_data, aes(x=start_2010, y= health_board)) +"
 "0","  #include point appearance"
 "0","  geom_point(size = 3, color = ""red"", shape = 21, fill = ""orange"", stroke = 1) +"
 "0","  #include segment appearance"
-"0","  geom_segment(aes(x=first_year_2010, xend=final_year_2021, y=health_board, yend=health_board) , size = 0.5, color = ""black"", linetype = ""dotdash"") +"
+"0","  geom_segment(aes(x=start_2010, xend=finish_2021, y=health_board, yend=health_board) , size = 0.5, color = ""black"", linetype = ""dotdash"") +"
 "0","  #include plot theme"
 "0","  theme_light() + "
 "0","  theme(panel.border = element_blank() , panel.grid.minor.x = element_line() ) +"
@@ -10,5 +10,3 @@
 "0","          ggtitle(""Anxiety & Depression prescriptions for 2010 - 2021"") +"
 "0","xlab(""Percentage"") + "
 "0","  ylab("""")"
-"2","Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-Please use `linewidth` instead."
